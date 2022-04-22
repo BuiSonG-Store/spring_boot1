@@ -41,16 +41,16 @@
 </form>
 <script>
     document.addEventListener('DOMContentLoaded',function () {
-        var btnSubmit = document.forms['news-form']['submit'];
-        var inputTitle = document.forms['news-form']['title'];
-        var inputDescription = document.forms['news-form']['description'];
-        var inputImage = document.forms['news-form']['image'];
-        var inputContent = document.forms['news-form']['content'];
-        var inputCategory = document.forms['news-form']['category'];
-        var inputStatus = document.forms['news-form']['status'];
+        const btnSubmit = document.forms['news-form']['submit'];
+        const inputTitle = document.forms['news-form']['title'];
+        const inputDescription = document.forms['news-form']['description'];
+        const inputImage = document.forms['news-form']['image'];
+        const inputContent = document.forms['news-form']['content'];
+        const inputCategory = document.forms['news-form']['category'];
+        const inputStatus = document.forms['news-form']['status'];
         btnSubmit.onclick = function (e) {
             e.preventDefault();
-            var objectToSend = {
+            const objectToSend = {
                 'title' : inputTitle.value,
                 'description' : inputDescription.value,
                 'image' : inputImage.value,
@@ -58,8 +58,8 @@
                 'category' : inputCategory.value,
                 'status' : inputStatus.value,
             }
-            var data = JSON.stringify(objectToSend);
-            var xhr = new XMLHttpRequest();
+            const data = JSON.stringify(objectToSend);
+            const xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200){
                     alert("OK DONE!!");

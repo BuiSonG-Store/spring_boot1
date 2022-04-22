@@ -59,7 +59,7 @@ function loadNewsDetail(id) {
                 document.forms['news-table']['category'].value = newsDetail.category;
                 document.forms['news-table']['status'].value = newsDetail.status;
             } else {
-                alert('Khong the load tin tuc');
+                alert('err');
             }
         }
     }
