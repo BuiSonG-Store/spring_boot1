@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+
+<body>
+<div class="w3-container">
+    <div class="w3-row w3-margin">
+        <a href="index.html"><< Black</a>
+        <h2>Detail News</h2>
+    </div>
+    <div class="w3-row w3-margin">
+        <table id="news-table">
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Content</th>
+                <th>Category</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>Status</th>
+            </tr>
+        </table>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const urlParmas = new URLSearchParams(window.location.search);
+        const id = urlParmas.get('id');
+        var getArticleDetailUrl = `http://localhost:8080/api/v1/news/${id}`;
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    var element = JSON.parse(xhr.responseText);
+                    var tableTag = document.querySelector('#news-table');
+                    tableTag.innerHTML += `<tr>
+                                            <td>${element.id}</td>
+                                            <td>${element.title}</td>
+                                            <td>${element.description}</td>
+                                            <td><img src="${element.image} style="height: 100px"" ></td>
+                                            <td>${element.content}</td>
+                                            <td>${element.category}</td>
+                                            <td>${element.createdAt}</td>
+                                            <td>${element.updatedAt}</td>
+                                            <td>${element.status}</td>
+                                    </tr>`;
+                } else {
+                    alert('khong the load');
+                }
+            }
+        }
+        xhr.open('GET', getArticleDetailUrl, false);
+        xhr.send();
+    });
+</script>
+</body>
+</html>
